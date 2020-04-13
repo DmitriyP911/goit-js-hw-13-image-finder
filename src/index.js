@@ -15,13 +15,14 @@ const modalDiv = document.querySelector( `.lightbox` );
 const modalDivButton = document.querySelector( `button[data-action="close-lightbox"]` );
 const modalImg = document.querySelector( `.modal-img` );
 const nextPicture = document.querySelector( `.add-more` );
+const submitButton = document.querySelector( `.sub` );
 let query = ``;
 
 input.addEventListener( `input`, debounce( getImages, 1000 ) );
 
 const pnotifySet = {
     text: "We did not find any pictures for your request",
-    delay: 4000,
+    delay: 3000,
     addClass: `warning`,
     width: '250px',
     remove: true,
@@ -32,8 +33,12 @@ const pnotifySet = {
 
 function getImages ( event ) {
     query = `&q=${event.target.value}`;
+    submitButton.addEventListener( `click`, sendSubmit );
+    nextPicture.addEventListener( `click`, addNewPictures );
+}
+
+function sendSubmit () {
     ul.innerHTML = ``;
-    PNotify.error( `` );
     nextPicture.style.visibility = `hidden`;
     axios.get( `${url}${query}&page=${page}${perPage}${key}` )
         .then( response => {
@@ -50,7 +55,6 @@ function getImages ( event ) {
             const markup = data.reduce( ( acc, el ) => acc + `<li class="image-card">${template( el )}</li>`, `` );
             ul.insertAdjacentHTML( `beforeend`, markup );
         } )
-    nextPicture.addEventListener( `click`, addNewPictures )
 }
 
 function addNewPictures () {
@@ -72,6 +76,7 @@ ul.addEventListener( `click`, event => {
 } )
 
 modalDivButton.addEventListener( `click`, closeModalWindow );
+
 document.addEventListener( `keyup`, event => {
     if( event.key === `Escape` ) {
         closeModalWindow();

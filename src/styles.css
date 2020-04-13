@@ -12,7 +12,6 @@ html {
 
 body {
   align-items: center;
-  /* justify-content: center; */
   flex-wrap: wrap;
   min-height: 100vh;
   margin: 0;
@@ -28,11 +27,10 @@ body {
 
 .search {
   display: flex;
-  margin: 0 auto;
+  justify-content: center;
 }
 
 .search-form {
-  margin: 0 auto;
   margin-top: 20px;
   border-radius: 5px;
     border: 0px solid red;
@@ -205,4 +203,19 @@ span {
   -webkit-box-shadow: 0px 0px 37px 6px rgb(250, 194, 9);
   -moz-box-shadow: 0px 0px 37px 6px rgba(250, 194, 9);
   box-shadow: 0px 0px 37px 6px rgba(250, 194, 9);
+}
+
+.sub {
+  background-color: grey;
+  border: none;
+  margin-top: 20px;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  outline: none;
+  border-radius: 5px;
 }
